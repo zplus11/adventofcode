@@ -1,8 +1,8 @@
-(*::Package::*)
+(* ::Package:: *)
 
-input=Import[FileNameJoin[{Directory[],"input.txt"}],"Text"];
+input=Import[NotebookDirectory[]<>"\\input.txt"];
 tuples=StringSplit[#,"   "]&/@StringSplit[input,"\n"];
-{l1,l2}=Transpose[ToExpression[tuples]];
-Print[Total[Abs[Sort[l1]-Sort[l2]]]] (*2066446*)
-count={#,Count[l2,#]}&/@l1;
+{l,r}=ToExpression@tuples//Transpose;
+Print[Total@Abs[r-l]] (*2066446*)
+count={#,Count[r,#]}&/@l;
 Print[Total[#[[1]]#[[2]]&/@count]] (*24931009*)
